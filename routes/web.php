@@ -15,10 +15,20 @@ use Illuminate\Support\Facades\Route;
 
 // Importar o Controller pra usar na rota
 use  App\Http\Controllers\EventController;
+use App\Http\Controllers\LoginController;
+use App\Http\Controllers\RegisterController;
 
-// Route::get('/login', [EventController::class, 'login']);
+Route::get('/register', [RegisterController::class, 'showRegistrationForm'])->name('register');
+// Route::post('/register', [RegisterController::class, 'register']);
 
-// Dizenndo que vai usar o index controller e a rota index
+
+// rota pra mostrar o formulário de login
+Route::get('/login', [LoginController::class, 'login']);
+// pra receber a requisição -> post
+Route::post('/events/login', [LoginController::class, 'authenticate'])->name('authenticate.login');
+
+
+// Dizendo que vai usar o index controller e a rota index
 Route::get('/', [EventController::class, 'index'] ); // create || middleware() nas rotas que a gente precisa que o usuário esteja logado
                                                     // é algo que vai agir entre a ação de clicar no link até a view ser entregue
 Route::get('/events/create', [EventController::class, 'create'])->middleware('auth');
@@ -28,13 +38,8 @@ Route::delete('/events/{id}', [EventController::class, 'destroy'])->middleware('
 Route::get('/events/edit/{id}', [EventController::class, 'edit'])->middleware('auth');     // ver no front o conteúdo que já existe               | Podendo fazer  os dois a partir de uma action só
 Route::put('/events/update/{id}', [EventController::class, 'update'])->middleware('auth'); // vai inserir a atualização no banco (fazer o update) | pra não repetir código (boas práticas #27)
 
-// No '/contact' do site, acessamos a view 'contact'
-Route::get('/contact', function () {
-    return view('contact');
-});
-
 // Cria uma nova rota que recebe(get) dados, onde acessa a rota(url) '/contact'
-// e retorna uma view, um qrquivo de blade php que tem html e php (dados dinâmicos)
+// e retorna uma view, um arquivo de blade php que tem html e php (dados dinâmicos)
 // para o usuário
 
 Route::get('/dashboard', [EventController::class, 'dashboard'])->middleware('auth');

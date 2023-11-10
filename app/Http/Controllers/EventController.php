@@ -208,12 +208,4 @@ class EventController extends Controller
 
         return redirect('/dashboard')->with('msg','Você saiu com sucesso do evento: ' . $event->title);
     }
-
-    // public function login() {
-
-
-
-    //     return view('events.dashboard', ['events' => $events, 'eventsasparticipant' => $eventsAsParticipant]);
-
-    // }
 }
