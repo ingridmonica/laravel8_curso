@@ -23,7 +23,7 @@ Route::get('/register', [RegisterController::class, 'showRegistrationForm'])->na
 
 
 // rota pra mostrar o formulário de login
-Route::get('/login', [LoginController::class, 'login']);
+Route::get('/login', [LoginController::class, 'login'])->name('login');
 // pra receber a requisição -> post
 Route::post('/events/login', [LoginController::class, 'authenticate'])->name('authenticate.login');
 
