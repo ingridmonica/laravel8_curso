@@ -137,8 +137,6 @@ class EventController extends Controller
             return redirect('/dashboard')->with('error', 'Evento possui participantes, não é possível excluir');
         }
 
-
-
     }
 
     public function edit($id) {
