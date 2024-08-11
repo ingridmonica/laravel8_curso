@@ -15,6 +15,9 @@ header {
     background-color: #FFF;
     border-bottom: 1px solid #CCC;
 }
+.img-fluid{
+    width: 100%;
+}
 
 .row {
     margin: 0;
